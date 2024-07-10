@@ -11,7 +11,7 @@
                     <a href="/pizzawinkel_app/menu.php" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">Choose your pizza</a>
                 </div>
                 <div class="col-lg-6 text-center text-lg-end overflow-hidden">
-                    <img class="img-fluid" src="src/assets/img/hero.png" alt="">
+                    <img class="img-fluid" src="src/assets/img/pizza-home.png" alt="">
                 </div>
             </div>
         </div>
@@ -70,16 +70,18 @@
                     <div class="row g-4">
                         <?php foreach ($allBestPizzas as $pizza) : ?>
                             <div class="col-lg-6">
-                                <div class="d-flex align-items-center">
-                                    <img class="flex-shrink-0 img-fluid rounded" src="src/assets/img/menu-1.jpg" alt="" style="width: 80px;">
-                                    <div class="w-100 d-flex flex-column text-start ps-4">
-                                        <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                            <span><?= $pizza['pizza_name'] ?></span>
-                                            <span class="text-primary">&euro;<?= $pizza['pizza_price'] ?></span>
-                                        </h5>
-                                        <small class="fst-italic"><?= $pizza['pizza_description'] ?></small>
+                                <a href="/pizzawinkel_app/single-pizza.php?id=<?= $pizza['pizza_id'] ?>">
+                                    <div class="d-flex align-items-center">
+                                        <img class="flex-shrink-0 img-fluid rounded" src="src/assets/img/menu-3.jpg" alt="" style="width: 80px;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                                <span><?= $pizza['pizza_name'] ?></span>
+                                                <span class="text-primary">&euro;<?= $pizza['pizza_price'] ?></span>
+                                            </h5>
+                                            <small class="fst-italic"><?= $pizza['pizza_description'] ?></small>
+                                        </div>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                         <?php endforeach; ?>
                     </div>
