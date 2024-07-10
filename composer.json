@@ -1,0 +1,15 @@
+{
+  "name": "nunomarques/pizzawinkel_app",
+  "autoload": {
+    "psr-4": {
+      "PizzaApp\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "NlcmarquesDev",
+      "email": "nunolcmarques@gmail.com"
+    }
+  ],
+  "require": {}
+}
