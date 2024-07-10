@@ -42,7 +42,9 @@
                         </div>
                     </div>
                 </div>
-                <a class="btn btn-primary py-3 px-5 mt-2" href="">Read More</a>
+                <?php if ($_SERVER['REQUEST_URI'] != '/pizzawinkel_app/about.php') : ?>
+                    <a class="btn btn-primary py-3 px-5 mt-2" href="/pizzawinkel_app/about.php">Read More</a>
+                <?php endif ?>
             </div>
         </div>
     </div>
