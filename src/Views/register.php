@@ -28,7 +28,7 @@
         <div class="col">
             <main class="form-signin w-100 m-auto">
                 <h1 class="h3 mb-3 fw-normal">Please Sign in</h1>
-                <form method="POST" action="/notes_app_php/register">
+                <form method="POST" action="/pizzawinkel_app/register.php">
                     <div class="row row-cols-1 row-cols-md-2 g-4">
                         <div class="form-floating  col">
                             <input type="text" name="firstname" class="form-control" id="floatingInput" placeholder="name@example.com">
@@ -54,38 +54,27 @@
                             <input type="text" name="phone" class="form-control" id="floatingInput" placeholder="Phone number">
                             <label class="ps-4" for="floatingInput">Phone number</label>
                         </div>
-                        <div class="form-check form-switch mx-auto">
-                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                        <div class="form-check form-switch mx-auto mb-4">
+                            <input class="form-check-input check-register" type="checkbox" role="switch" id="flexSwitchCheckChecked">
                             <label class="form-check-label" for="flexSwitchCheckChecked">I want to create a new account</label>
                         </div>
-
-
-
-
-
-
-
-
-
-
-                        <div id="check-user-database " class="d-none">
-                            <div class="form-floating ">
-                                <input type="email" name="email" class="form-control mb-3" id="floatingInput" placeholder="name@example.com">
-                                <label for="floatingInput">Email address</label>
-                            </div>
-                            <div class="form-floating ">
-                                <input type="password" name="password" class="form-control mb-3" id="floatingPassword" placeholder="Password">
-                                <label for="floatingPassword">Password</label>
-                            </div>
-                        </div>
-                        <?php if (isset($_SESSION['errors'])) : ?>
-                            <div class="alert alert-danger fw-light fs-6 " role="alert">
-                                <?= $_SESSION['errors'] ?>
-                            </div>
-                        <?php endif  ?>
-                        <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
-
                     </div>
+                    <div class="check-user-database d-none mb-4">
+                        <div class="form-floating ">
+                            <input type="email" name="email" class="form-control mb-3" id="floatingInput" placeholder="name@example.com">
+                            <label for="floatingInput">Email address</label>
+                        </div>
+                        <div class="form-floating ">
+                            <input type="password" name="password" class="form-control mb-3" id="floatingPassword" placeholder="Password">
+                            <label for="floatingPassword">Password</label>
+                        </div>
+                    </div>
+                    <?php if (isset($_SESSION['errors'])) : ?>
+                        <div class="alert alert-danger fw-light fs-6 " role="alert">
+                            <?= $_SESSION['errors'] ?>
+                        </div>
+                    <?php endif  ?>
+                    <button class="btn btn-primary w-100 py-2 btn-register" type="submit">Go to Checkout</button>
                 </form>
             </main>
         </div>

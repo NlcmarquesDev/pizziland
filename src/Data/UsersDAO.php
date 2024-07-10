@@ -18,4 +18,15 @@ class UsersDAO
     {
         return $this->db->query("SELECT * FROM `users`")->findAll();
     }
+    public function create($data)
+    {
+        $this->db->query("INSERT INTO `users` (`first_name`, `last_name`,`phone_number`,`adress`, `password`, `email`) VALUES (`:first_name`, `:last_name`,`:phone_number`,`:adress`, `:password`, `:email`);", [
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'phone_number' => $data['phone_number'],
+            'adress' => $data['adress'],
+            'password' => $data['password'],
+            'email' => $data['email'],
+        ]);
+    }
 }
