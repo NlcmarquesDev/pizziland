@@ -31,7 +31,7 @@
                 <form method="POST" action="/pizzawinkel_app/register.php">
                     <div class="row row-cols-1 row-cols-md-2 g-4">
                         <div class="form-floating  col">
-                            <input type="text" name="firstname" class="form-control" id="floatingInput" placeholder="name@example.com">
+                            <input type="text" name="firstname" class="form-control" id="floatingInput" placeholder="name@example.com" required>
                             <label class="ps-4" for="floatingInput">First Name</label>
                         </div>
                         <div class="form-floating col">
@@ -61,11 +61,11 @@
                     </div>
                     <div class="check-user-database d-none mb-4">
                         <div class="form-floating ">
-                            <input type="email" name="email" class="form-control mb-3" id="floatingInput" placeholder="name@example.com">
+                            <input type="email" name="email" class="form-control mb-3 input-email" id="floatingInput" placeholder="name@example.com">
                             <label for="floatingInput">Email address</label>
                         </div>
                         <div class="form-floating ">
-                            <input type="password" name="password" class="form-control mb-3" id="floatingPassword" placeholder="Password">
+                            <input type="password" name="password" class="form-control mb-3 input-pass" id="floatingPassword" placeholder="Password">
                             <label for="floatingPassword">Password</label>
                         </div>
                     </div>

@@ -115,6 +115,18 @@
   //Switch Register
   $(".check-register").click(function () {
     $(".check-user-database").toggleClass("d-none");
+    console.log($(".check-user-database").hasClass("d-none"));
+    if ($(".check-user-database").hasClass("d-none")) {
+      console.log("retira");
+      $(".input-email, .input-pass").prop("disabled", true);
+      $(".input-email, .input-pass").attr("name", ""); // Remove o atributo 'name' dos campos
+    } else {
+      console.log("insere");
+      $(".input-email, .input-pass").prop("disabled", false);
+      $(".input-email").attr("name", "email"); // Adiciona o atributo 'name' de volta aos campos
+      $(".input-pass").attr("name", "password");
+    }
+
     if ($(".btn-register").text() == "Go to Checkout") {
       $(".btn-register").text("register");
     } else {

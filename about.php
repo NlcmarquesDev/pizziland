@@ -1,4 +1,6 @@
-<?php include 'src/Views/partials/header.php'; ?>
+<?php
+require_once 'vendor/autoload.php';
+include 'src/Views/partials/header.php'; ?>
 
 <!-- Navbar & Hero Start -->
 <div class="container-xxl position-relative p-0">
