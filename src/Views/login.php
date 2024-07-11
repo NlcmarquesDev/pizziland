@@ -30,15 +30,19 @@
         <div class="col">
             <div class="row row-cols-1 row-cols-sm-2 g-4">
                 <main class="form-signin w-100 m-auto">
-                    <form action="/notes_app_php/login" method="POST">
-                        <h1 class="h3 mb-3 fw-normal">Please Log in</h1>
+                    <form action="/pizzawinkel_app/login.php" method="POST">
+                        <h1 class="h3 mb-3 fw-normal">Please Log in </h1>
+                        <div>
+                            email:nuno@test.com <br />
+                            pass: nuno12345
+                        </div>
                         <div class="form-floating">
-                            <input type="email" name="email" class="form-control mb-3" id="floatingInput" placeholder="name@example.com">
+                            <input type="email" name="email" class="form-control mb-3" id="floatingInput" placeholder="name@example.com" required>
                             <label for="floatingInput"><?= isset($_SESSION['oldValue']) ? $_SESSION['oldValue'] : "Email address" ?> </label>
                         </div>
 
                         <div class="form-floating">
-                            <input type="password" name="password" class="form-control mb-3" id="floatingPassword" placeholder="Password">
+                            <input type="password" name="password" class="form-control mb-3" id="floatingPassword" placeholder="Password" required>
                             <label for="floatingPassword">Password</label>
                         </div>
                         <?php if (isset($_SESSION['errors'])) : ?>
@@ -57,4 +61,6 @@
 
 
 <!-- Footer Start -->
-<?php include 'src/Views/partials/footer.php'; ?>
+<?php
+unset($_SESSION['errors']);
+include 'src/Views/partials/footer.php'; ?>

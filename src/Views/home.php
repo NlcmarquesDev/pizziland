@@ -1,6 +1,8 @@
+<?php include 'src/Views/partials/header.php'; ?>
 <!-- Navbar & Hero Start -->
 <div class="container-xxl position-relative p-0">
     <?php include 'src/Views/partials/navbar.php'; ?>
+
 
     <div class="container-xxl py-5 bg-dark hero-header mb-5">
         <div class="container my-5 py-5">
@@ -17,6 +19,11 @@
         </div>
     </div>
 </div>
+<?php if (isset($_SESSION['alertLogin'])) : ?>
+    <div class="alert alert-success container">
+        <?= $_SESSION['alertLogin'] ?>
+    </div>
+<?php endif; ?>
 <!-- Navbar & Hero End -->
 
 <!-- Service Start -->
@@ -106,4 +113,6 @@
 <!-- Testimonial End -->
 
 <!-- Footer Start -->
-<?php include 'src/Views/partials/footer.php'; ?>
+<?php
+unset($_SESSION['alertLogin']);
+include 'src/Views/partials/footer.php'; ?>

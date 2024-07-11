@@ -2,8 +2,11 @@
 session_start();
 require_once 'vendor/autoload.php';
 
+use PizzaApp\Core\Authorization;
 use PizzaApp\Core\ValidationInputs;
 use PizzaApp\Services\UserServices;
+
+Authorization::clientRegister();
 
 $users = new UserServices();
 
@@ -61,7 +64,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $dataClient['email'] = $email;
         $dataClient['password'] = $password;
 
-
         $users->createUser($dataClient);
         $_SESSION['alert'] = "Users registered successfully";
     }
@@ -69,34 +71,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $_SESSION['client'] = $dataClient;
     header("Location: /pizzawinkel_app/checkout.php");
     exit();
-
-
-
-
-
-
-    // criar validacao para os input de pass e email
-    //bcrypt($_POST['phone']);
-
-
-
-    // criar uma funcao para criar $_SESSION
-    // criar a sessao de sers para ir directo ao checkout sem criar registo na base de dados
-    // verificar todos os dados para quando for criar a ordem ter esses dados no delivery
-
-
-    //após isso ter mensagem de sucesso
-    //rederecionar para o checkout page com todos os producxtos e dados do cliente
-
-
-
-
-    var_dump("criar session");
-    die();
 }
-
-
-
-
 
 include 'src/Views/register.php';

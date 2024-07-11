@@ -18,6 +18,11 @@ class UsersDAO
     {
         return $this->db->query("SELECT * FROM `users`")->findAll();
     }
+
+    public function getUsersDataByEmail($email)
+    {
+        return $this->db->query("SELECT * FROM `users` WHERE email = :email", [':email' => $email])->find();
+    }
     public function create($data)
     {
         $this->db->query("INSERT INTO `users` (`postcode_id`,`first_name`, `last_name`,`phone_number`,`adress`, `password`, `email`) VALUES (:postcode_id,:first_name, :last_name,:phone_number,:adress, :password, :email);", [

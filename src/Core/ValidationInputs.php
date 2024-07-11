@@ -18,7 +18,7 @@ class ValidationInputs
 
     public static function validateUser($email, $password, $adminData)
     {
-        if ($adminData['email'] == $email &&  password_verify($password, $adminData['pass'])) {
+        if ($adminData['email'] == $email &&  password_verify($password, $adminData['password'])) {
             return true;
         }
         return false;

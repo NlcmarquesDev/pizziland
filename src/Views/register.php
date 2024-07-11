@@ -51,8 +51,8 @@
                             <label class="ps-4" for="floatingInput">Postcode</label>
                         </div>
                         <div class="form-floating col ">
-                            <input type="number" name="phone" class="form-control" id="floatingInput" placeholder="Phone number" required>
-                            <label class="ps-4" for="floatingInput">Phone number</label>
+                            <input type="number" name="phone" class="form-control" id="floatingInput" placeholder="Phone number " maxlength="10" required>
+                            <label class="ps-4" for="floatingInput">Phone number ex. 0444 00 00 00</label>
                         </div>
                         <div class="form-check form-switch mx-auto mb-4">
                             <input class="form-check-input check-register" type="checkbox" role="switch" id="flexSwitchCheckChecked">

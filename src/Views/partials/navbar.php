@@ -13,8 +13,12 @@
             <a href="menu.php" class="nav-item nav-link">Menu</a>
             <a href="contact.php" class="nav-item nav-link">Contact</a>
         </div>
-        <a href="/pizzawinkel_app/login.php" class="btn btn-primary py-1 px-2 me-3">SignUp</a>
-        <a href="/pizzawinkel_app/register.php" class="btn btn-primary py-1 px-2 me-3">Register</a>
+        <?php if (isset($_SESSION['client'])) : ?>
+            <a href="/pizzawinkel_app/checkout.php" class="btn btn-primary py-1 px-2 me-3">Checkout</a>
+        <?php else : ?>
+            <a href="/pizzawinkel_app/login.php" class="btn btn-primary py-1 px-2 me-3">SignUp</a>
+            <a href="/pizzawinkel_app/register.php" class="btn btn-primary py-1 px-2 me-3">Register</a>
+        <?php endif ?>
 
 
         <a class="btn btn-primary position-relative py-1 px-2" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">

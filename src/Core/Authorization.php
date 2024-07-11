@@ -6,9 +6,17 @@ namespace PizzaApp\Core;
 
 class Authorization
 {
-    public static function isLogIn()
+    public static function clientUnregister()
     {
-        if (!isset($_SESSION['admin']) && $_SESSION['admin'] != 'admin') {
+        if (!isset($_SESSION['client'])) {
+            header('location: ./index.php');
+            exit();
+        }
+    }
+
+    public static function clientRegister()
+    {
+        if (isset($_SESSION['client'])) {
             header('location: ./index.php');
             exit();
         }
