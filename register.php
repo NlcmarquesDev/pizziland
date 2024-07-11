@@ -1,8 +1,11 @@
 <?php
+session_start();
 require_once 'vendor/autoload.php';
 
 use PizzaApp\Core\ValidationInputs;
 use PizzaApp\Services\UserServices;
+
+$users = new UserServices();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -17,44 +20,71 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     ];
 
     $verificationInputs = ValidationInputs::validateFields($dataInput);
-    //TRUE TODOS OS INPUTS FORAM INSERIDOS
-    var_dump($_POST);
-    die();
-    if (isset($_POST['password']) && isset($_POST['email'])) {
-        var_dump('fui inserida');
-        die();
+
+    $postcodeId = $users->getPostcodeID($dataInput[4]);
+
+    if (!$postcodeId) {
+        $_SESSION['errors'] = "Please insert a valid postcode";
+        header("Location: /pizzawinkel_app/register.php");
+        exit();
     }
-    var_dump('nao fui inserida');
-    die();
-    if (strlen($_POST['password']) != 0 && strlen($_POST['email']) != 0) {
-        // criar validacao para os input de pass e email
+
+    if (!$verificationInputs) {
+        $_SESSION['errors'] = "Please insert all the fields";
+        header("Location: /pizzawinkel_app/register.php");
+        exit();
+    }
+
+    $dataClient = [
+        "firstName" => htmlspecialchars($_POST['firstname']),
+        "lastName" => htmlspecialchars($_POST['lastname']),
+        "adress" => htmlspecialchars($_POST['adress']),
+        "city" => htmlspecialchars($_POST['city']),
+        "postcode" => $postcodeId['postcode_id'],
+        "phoneNumber" => htmlspecialchars($_POST['phone'])
+    ];
+
+
+    if (isset($_POST['password']) && isset($_POST['email'])) {
+
         $dataRegisterInputs = [
             $email = htmlspecialchars($_POST['email']),
             $password = password_hash($_POST['password'], PASSWORD_DEFAULT)
         ];
         $verificationRegisterInputs = ValidationInputs::validateFields($dataRegisterInputs);
-        var_dump('pass and email ' . $verificationRegisterInputs);
-        die();
+        if (!$verificationRegisterInputs) {
+            $_SESSION['errors'] = "Please insert all the fields";
+            header("Location: /pizzawinkel_app/register.php");
+            exit();
+        }
 
-        $users = new UserServices();
-        $users->createUser([
-            'first_name' => $firstName,
-            'last_name' => $lastName,
-            'adress' => $adress,
-            'city' => $city,
-            'postcode' => $postcode,
-            'phone_number' => $phoneNumber
-        ]);
-        var_dump('criar registo');
-        die(); //bcrypt($_POST['phone']);
+        $dataClient['email'] = $email;
+        $dataClient['password'] = $password;
 
 
-    } else {
-        // criar uma funcao para criar $_SESSION
-        // criar a sessao de sers para ir directo ao checkout sem criar registo na base de dados
-        // verificar todos os dados para quando for criar a ordem ter esses dados no delivery
-
+        $users->createUser($dataClient);
+        $_SESSION['alert'] = "Users registered successfully";
     }
+
+    $_SESSION['client'] = $dataClient;
+    header("Location: /pizzawinkel_app/checkout.php");
+    exit();
+
+
+
+
+
+
+    // criar validacao para os input de pass e email
+    //bcrypt($_POST['phone']);
+
+
+
+    // criar uma funcao para criar $_SESSION
+    // criar a sessao de sers para ir directo ao checkout sem criar registo na base de dados
+    // verificar todos os dados para quando for criar a ordem ter esses dados no delivery
+
+
     //após isso ter mensagem de sucesso
     //rederecionar para o checkout page com todos os producxtos e dados do cliente
 

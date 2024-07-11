@@ -20,13 +20,19 @@ class UsersDAO
     }
     public function create($data)
     {
-        $this->db->query("INSERT INTO `users` (`first_name`, `last_name`,`phone_number`,`adress`, `password`, `email`) VALUES (`:first_name`, `:last_name`,`:phone_number`,`:adress`, `:password`, `:email`);", [
-            'first_name' => $data['first_name'],
-            'last_name' => $data['last_name'],
-            'phone_number' => $data['phone_number'],
-            'adress' => $data['adress'],
-            'password' => $data['password'],
-            'email' => $data['email'],
+        $this->db->query("INSERT INTO `users` (`postcode_id`,`first_name`, `last_name`,`phone_number`,`adress`, `password`, `email`) VALUES (:postcode_id,:first_name, :last_name,:phone_number,:adress, :password, :email);", [
+            ':first_name' => $data['firstName'],
+            ':last_name' => $data['lastName'],
+            ':phone_number' => $data['phoneNumber'],
+            ':postcode_id' => $data['postcode'],
+            ':adress' => $data['adress'],
+            ':password' => $data['password'],
+            ':email' => $data['email'],
         ]);
+    }
+
+    public function getPostcodeID($postcode)
+    {
+        return  $this->db->query("SELECT postcode_id FROM `postcode` WHERE postcode_number = :postcode", ['postcode' => $postcode])->find();
     }
 }

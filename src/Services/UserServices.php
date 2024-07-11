@@ -19,4 +19,10 @@ class UserServices
     {
         $this->dbUser->create($data);
     }
+
+    public function getPostcodeID($postcode)
+    {
+
+        return $this->dbUser->getPostcodeID($postcode);
+    }
 }

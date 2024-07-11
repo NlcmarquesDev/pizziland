@@ -114,8 +114,8 @@
 
   //Switch Register
   $(".check-register").click(function () {
-    $(".check-user-database").toggleClass("d-none");
     console.log($(".check-user-database").hasClass("d-none"));
+    $(".check-user-database").toggleClass("d-none");
     if ($(".check-user-database").hasClass("d-none")) {
       console.log("retira");
       $(".input-email, .input-pass").prop("disabled", true);

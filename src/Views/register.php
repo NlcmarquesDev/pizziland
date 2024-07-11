@@ -35,23 +35,23 @@
                             <label class="ps-4" for="floatingInput">First Name</label>
                         </div>
                         <div class="form-floating col">
-                            <input type="text" name="lastname" class="form-control" id="floatingInput" placeholder="name@example.com">
+                            <input type="text" name="lastname" class="form-control" id="floatingInput" placeholder="name@example.com" required>
                             <label class="ps-4" for="floatingInput">Last Name</label>
                         </div>
                         <div class="form-floating col">
-                            <input type="text" name="adress" class="form-control" id="floatingInput" placeholder="adress">
+                            <input type="text" name="adress" class="form-control" id="floatingInput" placeholder="adress" required>
                             <label class="ps-4" for="floatingInput">Adress</label>
                         </div>
                         <div class="form-floating col">
-                            <input type="text" name="city" class="form-control" id="floatingInput" placeholder="city">
+                            <input type="text" name="city" class="form-control" id="floatingInput" placeholder="city" required>
                             <label class="ps-4" for="floatingInput">City</label>
                         </div>
                         <div class="form-floating col">
-                            <input type="text" name="postcode" class="form-control" id="floatingInput" placeholder="postcode">
+                            <input type="number" name="postcode" class="form-control" id="floatingInput" placeholder="postcode" required>
                             <label class="ps-4" for="floatingInput">Postcode</label>
                         </div>
                         <div class="form-floating col ">
-                            <input type="text" name="phone" class="form-control" id="floatingInput" placeholder="Phone number">
+                            <input type="number" name="phone" class="form-control" id="floatingInput" placeholder="Phone number" required>
                             <label class="ps-4" for="floatingInput">Phone number</label>
                         </div>
                         <div class="form-check form-switch mx-auto mb-4">
@@ -73,7 +73,7 @@
                         <div class="alert alert-danger fw-light fs-6 " role="alert">
                             <?= $_SESSION['errors'] ?>
                         </div>
-                    <?php endif  ?>
+                    <?php endif ?>
                     <button class="btn btn-primary w-100 py-2 btn-register" type="submit">Go to Checkout</button>
                 </form>
             </main>
@@ -83,4 +83,6 @@
 
 
 <!-- Footer Start -->
-<?php include 'src/Views/partials/footer.php'; ?>
+<?php
+unset($_SESSION['errors']);
+include 'src/Views/partials/footer.php'; ?>
