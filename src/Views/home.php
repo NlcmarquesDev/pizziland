@@ -1,7 +1,9 @@
 <?php include 'src/Views/partials/header.php'; ?>
 <!-- Navbar & Hero Start -->
 <div class="container-xxl position-relative p-0">
-    <?php include 'src/Views/partials/navbar.php'; ?>
+    <?php
+    include 'src/Views/partials/navbar.php';
+    ?>
 
 
     <div class="container-xxl py-5 bg-dark hero-header mb-5">
@@ -68,39 +70,45 @@
                                     <i class="bi bi-cart-plus"></i>
                                 </button>
                             </div>
-
                             <!-- Modal -->
                             <div class="modal fade" id="exampleModal<?= $pizza['pizza_id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Pizza <?= $pizza['pizza_name'] ?></h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body text-start">
-                                            <div class="d-flex ">
-                                                <img class=" img-fluid rounded-circle ms-3 me-5 " src="src/assets/img/menu-3.jpg" alt="" style="min-width: 180px;">
-                                                <div>
-                                                    <p>
-                                                        <b>Description:</b> <?= $pizza['pizza_description'] ?>
-                                                    </p>
-                                                    <p><b>Price: </b> <?= $pizza['pizza_price'] ?></p>
-                                                    <p><b>Alergies: </b> <?= $pizza['pizza_alergies'] ?></p>
-                                                    <p><b>Size:</b></p>
-                                                    <select name="" id="">
-                                                        <option value="">small</option>
-                                                        <option value="">Medium</option>
-                                                        <option value="">Large</option>
-                                                        <option value="">Extra Large</option>
-                                                    </select>
+                                        <form action="/pizzawinkel_app/cart.php" method="POST">
+
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Pizza <?= $pizza['pizza_name'] ?></h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body text-start">
+                                                <div class="d-flex ">
+                                                    <img class=" img-fluid rounded-circle ms-3 me-5 " src="src/assets/img/<?= $pizza['pizza_image'] ?>" alt="" style="min-width: 180px;">
+                                                    <div>
+                                                        <p>
+                                                            <b>Description:</b> <?= $pizza['pizza_description'] ?>
+                                                        </p>
+                                                        <p><b>Price: </b> &euro;<?= $pizza['pizza_price'] ?></p>
+                                                        <p><b>Alergies: </b> <?= $pizza['pizza_alergies'] ?></p>
+                                                        <p><b>Size:</b></p>
+                                                        <select name="size" id="">
+                                                            <option value="small">small </option>
+                                                            <option value="Medium">Medium +10%</option>
+                                                            <option value="Large">Large +15%</option>
+                                                            <option value="xl">Extra Large +20%</option>
+                                                        </select>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            ...
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Save changes</button>
-                                        </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <input type="hidden" name="pizza_id" value="<?= $pizza['pizza_id'] ?>">
+                                                <input type="hidden" name="pizza_name" value="<?= $pizza['pizza_name'] ?>">
+                                                <input type="hidden" name="pizza_description" value="<?= $pizza['pizza_description'] ?>">
+                                                <input type="hidden" name="pizza_price" value="<?= $pizza['pizza_price'] ?>">
+                                                <input type="hidden" name="pizza_image" value="<?= $pizza['pizza_image'] ?>">
+                                                <button type="submit" class="btn btn-primary">Add to cart</button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

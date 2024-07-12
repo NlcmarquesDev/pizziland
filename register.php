@@ -6,6 +6,9 @@ use PizzaApp\Core\Authorization;
 use PizzaApp\Core\ValidationInputs;
 use PizzaApp\Services\UserServices;
 
+require_once 'src/Core/functions.php';
+$checkoutForm = checkform();
+
 Authorization::clientRegister();
 
 $users = new UserServices();

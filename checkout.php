@@ -1,10 +1,12 @@
 <?php
+session_start();
 
 use PizzaApp\Core\Authorization;
 use PizzaApp\Data\PostcodeDAO;
 
-session_start();
 require_once 'vendor/autoload.php';
+require_once 'src/Core/functions.php';
+$checkoutForm = checkform();
 
 Authorization::clientUnregister();
 $userdata = $_SESSION['client'];
