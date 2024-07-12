@@ -33,15 +33,42 @@
         </a>
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
             <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasExampleLabel">Your Order</h5>
+                <h5 class="offcanvas-title" id="offcanvasExampleLabel">Your Order <span class="bg-primary rounded-circle px-2 text-white ">3</span></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
                 <div>
-                    Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
+                    <main>
+                        <ul class="products text-decoration-none p-0">
+                            <li class="d-flex justify-content-between">
+                                <a href="#" class="product-link">
+                                    <div class="d-flex gap-2">
+                                        <img src="src/assets/img/menu-3.jpg" class="rounded-circle" alt="Product Photo">
+                                        <div class="product-details">
+                                            <h6>Very Cool Product One</h6>
+                                            <span class="qty d-flex gap-2">
+                                                <label for="">Quantity: </label>
+                                                <input class="w-25 border border-opacity-10" type="number" name="qty" id="" value="1">
+                                            </span>
+                                        </div>
+                                    </div>
+                                </a>
+                                <div class="d-flex flex-column align-items-end gap-2  ">
+                                    <a href="#remove" class="remove-button"><i class="bi bi-trash"></i></a>
+                                    <span class="price">$16.00</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </main>
                 </div>
-                <div class="dropdown mt-3">
-
+            </div>
+            <hr>
+            <div class="totals">
+                <div class="subtotal px-3 pb-3">
+                    <span class="label"><b>Subtotal:</b></span> <span class="amount">$54.00</span>
+                </div>
+                <div class="action-buttons">
+                    <a class="btn btn-primary w-100 m-0" href="/pizzawinkel_app/checkout.php">Checkout</a>
                 </div>
             </div>
         </div>
