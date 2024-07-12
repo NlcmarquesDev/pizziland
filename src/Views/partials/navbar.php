@@ -15,6 +15,7 @@
         </div>
         <?php if (isset($_SESSION['client'])) : ?>
             <a href="/pizzawinkel_app/checkout.php" class="btn btn-primary py-1 px-2 me-3">Checkout</a>
+            <a href="/pizzawinkel_app/logout.php" class="btn btn-primary py-1 px-2 me-3"><i class="bi bi-box-arrow-right"></i></a>
         <?php else : ?>
             <a href="/pizzawinkel_app/login.php" class="btn btn-primary py-1 px-2 me-3">SignUp</a>
             <a href="/pizzawinkel_app/register.php" class="btn btn-primary py-1 px-2 me-3">Register</a>

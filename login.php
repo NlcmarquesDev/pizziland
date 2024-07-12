@@ -18,9 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $auth = Authentication::auth($dataLogin);
 
-    // var_dump($auth);
-    // die();
-
     if (!$auth) {
         $_SESSION['errors'] = "Login incorrect, please try again!";
         header('Location: /pizzawinkel_app/login.php');
