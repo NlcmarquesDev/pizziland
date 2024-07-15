@@ -55,7 +55,7 @@
                                                     <h6><?php echo $pizza['pizza_name']; ?> - <?php echo $pizza['pizza_size']; ?></h6>
                                                     <span class="qty d-flex gap-2">
                                                         <label for="">Quantity: </label>
-                                                        <input class="w-25 border border-opacity-10" type="number" name="qty" id="" value="1">
+                                                        <input class="w-25 border border-opacity-10" type="number" name="qty" id="" value="<?php echo $pizza['pizza_quantity']; ?>">
                                                     </span>
                                                 </div>
                                             </div>
@@ -73,6 +73,10 @@
 
                             <?php else : ?>
                                 <h4>Your cart is empty</h4>
+
+                                <div>
+                                    <a class="btn btn-primary w-100 m-0 mt-5" href="/pizzawinkel_app/menu.php">Menu</a>
+                                </div>
                             <?php endif; ?>
                         </ul>
                     </main>
@@ -81,7 +85,7 @@
             <hr>
             <div class="totals">
                 <div class="subtotal px-3 pb-3">
-                    <span class="label"><b>Subtotal:</b></span> <span class="amount">$54.00</span>
+                    <span class="label"><b>Subtotal:</b></span> <span class="amount">&euro;<?php echo isset($_SESSION['total_cart']) ? $_SESSION['total_cart'] : 0 ?></span>
                 </div>
                 <div class="action-buttons">
                     <?php

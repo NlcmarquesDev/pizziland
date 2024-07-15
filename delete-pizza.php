@@ -1,4 +1,7 @@
 <?php
+
+use PizzaApp\Entities\Cart;
+
 session_start();
 require_once('vendor/autoload.php');
 
@@ -9,8 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     unset($array[$index]);
     $_SESSION['cart'] = array_values($array);
 
-
-    // $_SESSION['alert'] = 'Movie deleted successfully from your basket';
+    $_SESSION['total_cart'] = Cart::totalPriceCart($_SESSION['cart']);
 }
 
 header('location:/pizzawinkel_app/menu.php');

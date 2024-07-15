@@ -28,30 +28,22 @@
                 <div class="col-md-5 col-lg-4 order-md-last">
                     <h4 class="d-flex justify-content-between align-items-center mb-3">
                         <span class="text-primary">Your cart</span>
-                        <span class="badge bg-primary rounded-pill">3</span>
+                        <span class="badge bg-primary rounded-pill"><?php echo isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0; ?></span>
                     </h4>
                     <ul class="list-group mb-3">
-                        <li class="list-group-item d-flex justify-content-between lh-sm">
-                            <div>
-                                <h6 class="my-0">Product name</h6>
-                                <small class="text-body-secondary">Brief description</small>
-                            </div>
-                            <span class="text-body-secondary">$12</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between lh-sm">
-                            <div>
-                                <h6 class="my-0">Second product</h6>
-                                <small class="text-body-secondary">Brief description</small>
-                            </div>
-                            <span class="text-body-secondary">$8</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between lh-sm">
-                            <div>
-                                <h6 class="my-0">Third item</h6>
-                                <small class="text-body-secondary">Brief description</small>
-                            </div>
-                            <span class="text-body-secondary">$5</span>
-                        </li>
+                        <?php if (isset($_SESSION['cart'])) : ?>
+                            <?php foreach ($_SESSION['cart'] as $key => $pizza) :  ?>
+                                <li class="list-group-item d-flex justify-content-between lh-sm">
+                                    <div>
+                                        <h6 class="my-0"><?= $pizza['pizza_name'] ?></h6>
+                                        <small class="text-body-secondary">Size: <?= $pizza['pizza_size'] ?> </small>
+                                        <br>
+                                        <small class="text-body-secondary">Quantity: <?= $pizza['pizza_quantity'] ?></small>
+                                    </div>
+                                    <span class="text-body-secondary">&euro;<?= $pizza['pizza_price'] ?></span>
+                                </li>
+                            <?php endforeach ?>
+                        <?php endif ?>
                         <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
                             <div class="text-success">
                                 <h6 class="my-0">Promo code</h6>
@@ -60,15 +52,15 @@
                             <span class="text-success">−$5</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between">
-                            <span>Total (USD)</span>
-                            <strong>$20</strong>
+                            <span>Total (Euro)</span>
+                            <strong>&euro;<?php echo isset($_SESSION['total_cart']) ? $_SESSION['total_cart'] : 0 ?></strong>
                         </li>
                     </ul>
 
-                    <form class="card p-2">
+                    <form class="card p-2" action="" method="POST">
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="Promo code">
-                            <button type="submit" class="btn btn-secondary">Redeem</button>
+                            <button type="submit" class="btn btn-secondary">Insert</button>
                         </div>
                     </form>
                 </div>

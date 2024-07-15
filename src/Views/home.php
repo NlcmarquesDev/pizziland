@@ -92,8 +92,8 @@
                                                         <p><b>Size:</b></p>
                                                         <select name="size" id="">
                                                             <option value="small">small </option>
-                                                            <option value="Medium">Medium +10%</option>
-                                                            <option value="Large">Large +15%</option>
+                                                            <option value="medium">Medium +10%</option>
+                                                            <option value="large">Large +15%</option>
                                                             <option value="xl">Extra Large +20%</option>
                                                         </select>
                                                     </div>
