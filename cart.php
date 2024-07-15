@@ -13,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'pizza_size' => $_POST['size'],
     ];
 
+    //criar um objecto de cart
 
     $_SESSION['cart'][] = $pizza;
 

@@ -55,17 +55,17 @@
                             <label class="ps-4" for="floatingInput">Phone number ex. 0444 00 00 00</label>
                         </div>
                         <div class="form-check form-switch mx-auto mb-4">
-                            <input class="form-check-input check-register" type="checkbox" role="switch" id="flexSwitchCheckChecked">
+                            <input class="form-check-input check-register" name="role" type="checkbox" role="switch" id="flexSwitchCheckChecked">
                             <label class="form-check-label" for="flexSwitchCheckChecked">I want to create a new account</label>
                         </div>
                     </div>
                     <div class="check-user-database d-none mb-4">
                         <div class="form-floating ">
-                            <input type="email" name="email" class="form-control mb-3 input-email" id="floatingInput" placeholder="name@example.com">
+                            <input type="email" class="form-control mb-3 input-email" id="floatingInput" placeholder="name@example.com">
                             <label for="floatingInput">Email address</label>
                         </div>
                         <div class="form-floating ">
-                            <input type="password" name="password" class="form-control mb-3 input-pass" id="floatingPassword" placeholder="Password">
+                            <input type="password" class="form-control mb-3 input-pass" id="floatingPassword" placeholder="Password">
                             <label for="floatingPassword">Password</label>
                         </div>
                     </div>

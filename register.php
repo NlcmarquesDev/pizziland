@@ -42,14 +42,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     $dataClient = [
-        "firstName" => htmlspecialchars($_POST['firstname']),
-        "lastName" => htmlspecialchars($_POST['lastname']),
+        "first_name" => htmlspecialchars($_POST['firstname']),
+        "last_name" => htmlspecialchars($_POST['lastname']),
         "adress" => htmlspecialchars($_POST['adress']),
         "city" => htmlspecialchars($_POST['city']),
-        "postcode" => $postcodeId['postcode_id'],
-        "phoneNumber" => htmlspecialchars($_POST['phone'])
+        "postcode_id" => $postcodeId['postcode_id'],
+        "phone_number" => htmlspecialchars($_POST['phone'])
     ];
-
 
     if (isset($_POST['password']) && isset($_POST['email'])) {
 
@@ -72,6 +71,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     $_SESSION['client'] = $dataClient;
+
+
     header("Location: /pizzawinkel_app/checkout.php");
     exit();
 }

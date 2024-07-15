@@ -11,7 +11,7 @@ $checkoutForm = checkform();
 Authorization::clientUnregister();
 $userdata = $_SESSION['client'];
 
-// var_dump($userdata);
+var_dump($userdata);
 
 $userPostcode = new PostcodeDAO();
 $userLocation = $userPostcode->getPostcodeByID($userdata['postcode_id']);

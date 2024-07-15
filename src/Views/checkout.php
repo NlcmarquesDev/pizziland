@@ -88,7 +88,7 @@
                                 <label for="username" class="form-label">Email</label>
                                 <div class="input-group has-validation">
                                     <span class="input-group-text">@</span>
-                                    <input type="text" class="form-control" id="adress" value="<?= $userdata['email'] ?>" required>
+                                    <input type="text" class="form-control" id="adress" value="<?= isset($userdata['email']) ? $userdata['email'] : '' ?>" required>
                                 </div>
                             </div>
                             <div class="col-sm-6">
