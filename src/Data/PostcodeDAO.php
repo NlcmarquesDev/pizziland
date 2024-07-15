@@ -22,4 +22,8 @@ class PostcodeDAO
     {
         return $this->db->query("SELECT * FROM postcode WHERE postcode_id = :postcodeId", [':postcodeId' => $postcodeId])->find();
     }
+    public function isDeliveryAvailable($postcodeNumber)
+    {
+        return $this->db->query("SELECT delivery_place FROM postcode WHERE postcode_number = :postcodeNumber", [':postcodeNumber' => $postcodeNumber])->find();
+    }
 }

@@ -84,39 +84,39 @@
                 </div>
                 <div class="col-md-7 col-lg-8">
                     <h4 class="mb-3">Billing address</h4>
-                    <form class="needs-validation" novalidate>
+                    <form class="needs-validation" action="/pizzawinkel_app/order.php" method="POST" novalidate>
                         <div class="row g-3">
                             <div class="col-sm-6">
                                 <label for="firstName" class="form-label">First name</label>
-                                <input type="text" class="form-control" id="firstName" value="<?= $userdata['first_name'] ?>" required>
+                                <input type="text" class="form-control" name="firstName" value="<?= $userdata['first_name'] ?>" required>
                             </div>
                             <div class="col-sm-6">
                                 <label for="lastName" class="form-label">Last name</label>
-                                <input type="text" class="form-control" id="lastName" value="<?= $userdata['last_name'] ?>" required>
+                                <input type="text" class="form-control" name="lastName" value="<?= $userdata['last_name'] ?>" required>
                             </div>
                             <div class="col-sm-6">
                                 <label for="username" class="form-label">Email</label>
                                 <div class="input-group has-validation">
                                     <span class="input-group-text">@</span>
-                                    <input type="text" class="form-control" id="adress" value="<?= isset($userdata['email']) ? $userdata['email'] : '' ?>" required>
+                                    <input type="text" class="form-control" name="email" value="<?= isset($userdata['email']) ? $userdata['email'] : '' ?>" required>
                                 </div>
                             </div>
                             <div class="col-sm-6">
-                                <label for="address" class="form-label">Phone number</label>
-                                <input type="text" class="form-control" id="address" value="+32 <?= $userdata['phone_number'] ?>" required>
+                                <label for="address" class="form-label">Phone number +32</label>
+                                <input type="text" class="form-control" name="phoneNumber" value="<?= $userdata['phone_number'] ?>" required>
                             </div>
                             <div class="col-sm-6">
                                 <label for="address" class="form-label">Address</label>
-                                <input type="text" class="form-control" id="address" value="<?= $userdata['adress'] ?>" required>
+                                <input type="text" class="form-control" name="address" value="<?= $userdata['adress'] ?>" required>
                             </div>
                             <div class="col-sm-3">
                                 <label for="zip" class="form-label">City</label>
-                                <input type="text" class="form-control" id="city" value="<?= $userLocation['city'] ?>" required>
+                                <input type="text" class="form-control" name="city" value="<?= $userLocation['city'] ?>" required>
                             </div>
 
                             <div class="col-sm-3">
                                 <label for="zip" class="form-label">Postcode</label>
-                                <input type="text" class="form-control" id="zip" placeholder="" value="<?= $userLocation['postcode_number'] ?>" required>
+                                <input type="text" class="form-control" name="postcode" placeholder="" value="<?= $userLocation['postcode_number'] ?>" required>
                             </div>
                         </div>
 
@@ -126,20 +126,25 @@
 
                         <div class="my-3">
                             <div class="form-check">
-                                <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked required>
+                                <input id="credit" name="paymentMethod" value="payconiq" type="radio" class="form-check-input" checked required>
                                 <label class="form-check-label" for="credit">Payconiq</label>
                             </div>
                             <div class="form-check">
-                                <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required>
+                                <input id="debit" name="paymentMethod" value="debit" type="radio" class="form-check-input" required>
                                 <label class="form-check-label" for="debit">Debit Card</label>
                             </div>
                             <div class="form-check">
-                                <input id="paypal" name="paymentMethod" type="radio" class="form-check-input" required>
+                                <input id="paypal" name="paymentMethod" value="paypal" type="radio" class="form-check-input" required>
                                 <label class="form-check-label" for="paypal">PayPal</label>
                             </div>
                         </div>
 
                         <hr class="my-4">
+                        <?php if (isset($_SESSION['error-postcode'])) : ?>
+                            <div class="alert alert-danger">
+                                <?= $_SESSION['error-postcode'] ?>
+                            </div>
+                        <?php endif ?>
 
                         <button class="w-100 btn btn-primary btn-lg" type="submit">Place your Order</button>
                     </form>
@@ -155,4 +160,5 @@
 <?php
 
 unset($_SESSION['promo-alert']);
+unset($_SESSION['error-postcode']);
 include 'src/Views/partials/footer.php'; ?>
