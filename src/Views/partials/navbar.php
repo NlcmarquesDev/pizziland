@@ -50,7 +50,7 @@
                                     <li class="d-flex justify-content-between my-2">
                                         <a href="#" class="product-link">
                                             <div class="d-flex gap-2">
-                                                <img src="src/assets/img/<?php echo $pizza['pizza_image']; ?>" class="rounded-circle" alt="Product Photo">
+                                                <img src="src/assets/img/<?php echo $pizza['pizza_image']; ?>" class="rounded-circle" alt="Pizza <?php echo $pizza['pizza_name']; ?>">
                                                 <div class="my-auto">
                                                     <h6><?php echo $pizza['pizza_name']; ?> - <?php echo $pizza['pizza_size']; ?></h6>
                                                     <span class="qty d-flex gap-2">

@@ -44,24 +44,42 @@
                                 </li>
                             <?php endforeach ?>
                         <?php endif ?>
-                        <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
-                            <div class="text-success">
-                                <h6 class="my-0">Promo code</h6>
-                                <small>EXAMPLECODE</small>
-                            </div>
-                            <span class="text-success">−$5</span>
-                        </li>
+                        <?php if (isset($_SESSION['promo'])) : ?>
+                            <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
+                                <div class="text-success">
+                                    <h6 class="my-0">Promo code</h6>
+
+                                </div>
+                                <small class="text-success"><?= $_SESSION['promo']['percentage'] ?>%</small>
+                            </li>
+                        <?php endif ?>
+
                         <li class="list-group-item d-flex justify-content-between">
                             <span>Total (Euro)</span>
                             <strong>&euro;<?php echo isset($_SESSION['total_cart']) ? $_SESSION['total_cart'] : 0 ?></strong>
                         </li>
                     </ul>
 
-                    <form class="card p-2" action="" method="POST">
+                    <form class="card p-2" action="/pizzawinkel_app/checkout.php" method="POST">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Promo code">
+                            <input type="text" class="form-control" name="promo" placeholder="Promo code">
                             <button type="submit" class="btn btn-secondary">Insert</button>
                         </div>
+
+                        <?php if ($promoSection && isset($_SESSION['cart'])) : ?>
+                            <div class="mt-3">
+                                <p class="d-inline-flex gap-1">
+                                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                        Show Promo Code
+                                    </button>
+                                </p>
+                                <div class="collapse" id="collapseExample">
+                                    <div class="badge text-primary fs-6 w-50">
+                                        <?php echo $promoCodeString; ?>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endif ?>
                     </form>
                 </div>
                 <div class="col-md-7 col-lg-8">
@@ -120,41 +138,6 @@
                                 <label class="form-check-label" for="paypal">PayPal</label>
                             </div>
                         </div>
-                        <!--
-                        <div class="row gy-3">
-                            <div class="col-md-6">
-                                <label for="cc-name" class="form-label">Name on card</label>
-                                <input type="text" class="form-control" id="cc-name" placeholder="" required>
-                                <small class="text-body-secondary">Full name as displayed on card</small>
-                                <div class="invalid-feedback">
-                                    Name on card is required
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <label for="cc-number" class="form-label">Credit card number</label>
-                                <input type="text" class="form-control" id="cc-number" placeholder="" required>
-                                <div class="invalid-feedback">
-                                    Credit card number is required
-                                </div>
-                            </div>
-
-                            <div class="col-md-3">
-                                <label for="cc-expiration" class="form-label">Expiration</label>
-                                <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
-                                <div class="invalid-feedback">
-                                    Expiration date required
-                                </div>
-                            </div>
-
-                            <div class="col-md-3">
-                                <label for="cc-cvv" class="form-label">CVV</label>
-                                <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
-                                <div class="invalid-feedback">
-                                    Security code required
-                                </div>
-                            </div>
-                        </div> -->
 
                         <hr class="my-4">
 
@@ -169,4 +152,7 @@
 <!-- Menu End -->
 
 <!-- Footer Start -->
-<?php include 'src/Views/partials/footer.php'; ?>
+<?php
+
+unset($_SESSION['promo-alert']);
+include 'src/Views/partials/footer.php'; ?>
