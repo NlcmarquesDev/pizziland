@@ -63,10 +63,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     foreach ($cart as $orderItem) {
         // var_dump($orderItem);
         // die();
-        $orderItems->createOrder($orderItem, $lastInsertIdOrder);
+        $orderItems->createOrder($orderItem, $lastInsertIdOrder['id']);
     }
 
-
+    $_SESSION['orderPlaced'] = true;
+    if ($user == 0) {
+        unset($_SESSION['client']);
+    }
+    unset($_SESSION['cart']);
     $_SESSION['alertLogin'] = 'Your order has been placed successfully';
     header('Location: /pizzawinkel_app/index.php');
     exit();
