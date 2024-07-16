@@ -30,31 +30,31 @@ include 'src/Views/partials/header.php'; ?>
             <div class="row g-3">
               <div class="col-sm-6">
                 <label for="firstName" class="form-label">Name</label>
-                <input type="text" class="form-control" name="firstName" value="<?= $userdata['first_name'] ?>" disabled>
+                <input type="text" class="form-control" name="firstName" value="<?= $lastUserData['delivery_username'] ?>" disabled>
               </div>
               <div class="col-sm-6">
                 <label for="username" class="form-label">Email</label>
                 <div class="input-group has-validation">
                   <span class="input-group-text">@</span>
-                  <input type="text" class="form-control" name="email" value="<?= isset($userdata['email']) ? $userdata['email'] : '' ?>" disabled>
+                  <input type="text" class="form-control" name="email" value="<?= isset($lastUserData['delivery_email']) ? $lastUserData['delivery_email'] : '' ?>" disabled>
                 </div>
               </div>
               <div class="col-sm-6">
                 <label for="address" class="form-label">Phone number +32</label>
-                <input type="text" class="form-control" name="phoneNumber" value="<?= $userdata['phone_number'] ?>" disabled>
+                <input type="text" class="form-control" name="phoneNumber" value="<?= $lastUserData['delivery_phone'] ?>" disabled>
               </div>
               <div class="col-sm-6">
                 <label for="address" class="form-label">Address</label>
-                <input type="text" class="form-control" name="address" value="<?= $userdata['adress'] ?>" disabled>
+                <input type="text" class="form-control" name="address" value="<?= $lastUserData['delivery_adress'] ?>" disabled>
               </div>
-              <div class="col-sm-3">
+              <!-- <div class="col-sm-3">
                 <label for="zip" class="form-label">City</label>
                 <input type="text" class="form-control" name="city" value="<?= $userLocation['city'] ?>" disabled>
-              </div>
+              </div> -->
 
               <div class="col-sm-3">
                 <label for="zip" class="form-label">Postcode</label>
-                <input type="text" class="form-control" name="postcode" placeholder="" value="<?= $userLocation['postcode_number'] ?>" disabled>
+                <input type="text" class="form-control" name="postcode" placeholder="" value="<?= $lastUserData['delivery_postcode'] ?>" disabled>
               </div>
             </div>
 
@@ -72,12 +72,15 @@ include 'src/Views/partials/header.php'; ?>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                  </tr>
+                  <?php foreach ($orderItemsData as $item) : ?>
+                    <tr>
+                      <th scope="row"><?= $item['order_id'] ?></th>
+                      <td><?= $item['pizza_id'] ?></td>
+                      <td><?= $item['size_id'] ?></td>
+                      <td><?= $item['quantity'] ?></td>
+                      <td><?= $item['unit_price'] ?></td>
+                    </tr>
+                  <?php endforeach; ?>
                 </tbody>
               </table>
             </div>

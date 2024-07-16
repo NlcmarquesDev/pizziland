@@ -14,6 +14,11 @@ class DeliveryDAO
         $this->db = new Database();
     }
 
+    public function getDeliverByIdy($id)
+    {
+        return $this->db->query("SELECT * FROM `delivery` WHERE `delivery_id` = :id", [':id' => $id])->find();
+    }
+
 
     public function createDelivery($data)
     {

@@ -20,7 +20,7 @@ class OrdersDAO
     }
     public function getOrdersByUserID($id)
     {
-        return $this->db->query("SELECT * FROM orders WHERE user_id = :id", [':id' => $id])->find();
+        return $this->db->query("SELECT * FROM orders WHERE order_id = :id", [':id' => $id])->find();
     }
 
     public function createOrder($data)
