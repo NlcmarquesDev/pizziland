@@ -1,13 +1,11 @@
 <?php
+session_start();
 require_once 'vendor/autoload.php';
 require_once 'src/Core/functions.php';
 
-use PizzaApp\Data\OrdersDAO;
-use PizzaApp\Data\DeliveryDAO;
-use PizzaApp\Data\PostcodeDAO;
-use PizzaApp\Data\OrderItemsDAO;
+use PizzaApp\Bussiness\OrderServices;
 
-session_start();
+$order = new OrderServices();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $paymentMethod = $_POST['paymentMethod'];
@@ -22,27 +20,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         'email' => htmlentities($_POST['email']),
         'notes' => '',
     ];
-    $cart = $_SESSION['cart'];
+
+    $order->cart = $_SESSION['cart'];
 
     //check if the postcode is avaiable to delivery
-    $postcode = new PostcodeDAO();
-    $postcodeDelivery = $postcode->isDeliveryAvailable($client['postcode_number']);
+    $postcodeDelivery = $order->isDeliveryAvailable($client['postcode_number']);
     if ($postcodeDelivery['delivery_place'] === 0) {
-        $_SESSION['error-postcode'] = 'This postcode is not available for delivery';
-        header('Location: /pizzawinkel_app/checkout.php');
-        exit();
+        $order->errors('error-postcode', 'This postcode is not available for delivery');
     }
-
-
     //insert first delivery data
-    $deliverys = new DeliveryDAO();
-    $deliverys->createDelivery($client);
 
-    $lastInsertIdDelivery = $deliverys->getLastId();
+    $lastInsertIdDelivery = $order->createDeliveryAndGetId($client);
 
     //insert the order data
-    $order = new OrdersDAO();
-    $user = 0;
+    $user = $order->user;
     //check if is user or guest
     if (isset($_SESSION['client']['user_id'])) {
         $user = $_SESSION['client']['user_id'];
@@ -55,19 +46,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         'order_date' => date('Y-m-d H:i:s')
     ];
 
-    $order->createOrder($orderData);
-    $lastInsertIdOrder = $order->getLastId();
+    $lastInsertIdOrder = $order->createOrderAndGetId($orderData);
 
     //insert the orderItems data
-    $orderItems = new OrderItemsDAO();
-    foreach ($cart as $orderItem) {
-        // var_dump($orderItem);
-        // die();
-        $orderItems->createOrder($orderItem, $lastInsertIdOrder['id']);
-    }
+    $order->createOrderItems($order->cart, $lastInsertIdOrder['id']);
+
 
     $_SESSION['orderPlaced'] = true;
-    if ($user == 0) {
+    if ($order->user == 0) {
         unset($_SESSION['client']);
     }
     unset($_SESSION['cart']);
@@ -75,11 +61,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     header('Location: /pizzawinkel_app/index.php');
     exit();
 }
-
-
-
-
-
-//order items
-    //order
-// user_id  , caso seja guest ele vai criar uma string a dizer 'guest'

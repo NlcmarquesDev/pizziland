@@ -50,7 +50,7 @@
                     <div class="row g-4">
                         <?php foreach ($allBestPizzas as $pizza) : ?>
                             <div class="col-lg-5">
-                                <a href="/pizzawinkel_app/single-pizza.php?id=<?= $pizza['pizza_id'] ?>">
+                                <a type="button" class="btn text-primary" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $pizza['pizza_id'] ?>">
                                     <div class="d-flex align-items-center">
                                         <img class="flex-shrink-0 img-fluid rounded" src="src/assets/img/menu-3.jpg" alt="" style="width: 80px;">
                                         <div class="w-100 d-flex flex-column text-start ps-4">

@@ -6,8 +6,6 @@ namespace PizzaApp\Bussiness;
 
 use PizzaApp\Data\UsersDAO;
 
-// session_start();
-
 class RegisterServices
 {
     protected $users;
@@ -43,8 +41,6 @@ class RegisterServices
     public function createSessionClient($dataClient)
     {
         $_SESSION['client'] = $dataClient;
-
-
         header("Location: /pizzawinkel_app/checkout.php");
         exit();
     }
