@@ -4,18 +4,18 @@ require_once 'vendor/autoload.php';
 
 use PizzaApp\Core\Authorization;
 use PizzaApp\Core\ValidationInputs;
-use PizzaApp\Services\UserServices;
+use PizzaApp\Bussiness\RegisterServices;
 
 require_once 'src/Core/functions.php';
 $checkoutForm = checkform();
 
 Authorization::clientRegister();
 
-$users = new UserServices();
+$registerService = new RegisterServices();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    //criar a validacao para cada input
+    //Create an array with the inputs to check validation
     $dataInput = [
         $firstName = htmlspecialchars($_POST['firstname']),
         $lastName = htmlspecialchars($_POST['lastname']),
@@ -27,19 +27,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $verificationInputs = ValidationInputs::validateFields($dataInput);
 
-    $postcodeId = $users->getPostcodeID($dataInput[4]);
+    $postcodeId = $registerService->checkPostCode($dataInput[4]);
 
-    if (!$postcodeId) {
-        $_SESSION['errors'] = "Please insert a valid postcode";
-        header("Location: /pizzawinkel_app/register.php");
-        exit();
-    }
+    $registerService->validationInputs($postcodeId, "Please insert a valid postcode");
+    $registerService->validationInputs($verificationInputs, "Please insert all the fields");
 
-    if (!$verificationInputs) {
-        $_SESSION['errors'] = "Please insert all the fields";
-        header("Location: /pizzawinkel_app/register.php");
-        exit();
-    }
 
     $dataClient = [
         "first_name" => htmlspecialchars($_POST['firstname']),
@@ -49,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         "postcode_id" => $postcodeId['postcode_id'],
         "phone_number" => htmlspecialchars($_POST['phone'])
     ];
-
+    //if the switch is on to save the client on the database;
     if (isset($_POST['password']) && isset($_POST['email'])) {
 
         $dataRegisterInputs = [
@@ -57,24 +49,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $password = password_hash($_POST['password'], PASSWORD_DEFAULT)
         ];
         $verificationRegisterInputs = ValidationInputs::validateFields($dataRegisterInputs);
-        if (!$verificationRegisterInputs) {
-            $_SESSION['errors'] = "Please insert all the fields";
-            header("Location: /pizzawinkel_app/register.php");
-            exit();
-        }
+        $registerService->validationInputs($verificationRegisterInputs, "Please insert all the fields");
 
         $dataClient['email'] = $email;
         $dataClient['password'] = $password;
 
-        $users->createUser($dataClient);
-        $_SESSION['alert'] = "Users registered successfully";
+        $registerService->createNewUser($dataClient);
     }
 
-    $_SESSION['client'] = $dataClient;
-
-
-    header("Location: /pizzawinkel_app/checkout.php");
-    exit();
+    $registerService->createSessionClient($dataClient);
 }
 
 include 'src/Views/register.php';
