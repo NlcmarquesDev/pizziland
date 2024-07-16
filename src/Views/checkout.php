@@ -1,4 +1,5 @@
-<?php include 'src/Views/partials/header.php'; ?>
+<?php
+include 'src/Views/partials/header.php'; ?>
 
 <!-- Navbar & Hero Start -->
 <div class="container-xxl position-relative p-0">

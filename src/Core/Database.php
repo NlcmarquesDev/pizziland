@@ -35,4 +35,8 @@ class Database
     {
         return $this->statment->fetch(PDO::FETCH_ASSOC);
     }
+    public function  getLastId($table, $column)
+    {
+        return $this->query("SELECT " . $column . " as id FROM " . $table . " ORDER BY " . $column . " DESC LIMIT 1;")->find();
+    }
 }

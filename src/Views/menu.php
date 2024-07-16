@@ -78,10 +78,9 @@ include 'src/Views/partials/header.php'; ?>
                                                         <p><b>Alergies: </b> <?= $pizza['pizza_alergies'] ?></p>
                                                         <p><b>Size:</b></p>
                                                         <select name="size" id="">
-                                                            <option value="small">small </option>
-                                                            <option value="medium">Medium +10%</option>
-                                                            <option value="large">Large +15%</option>
-                                                            <option value="xl">Extra Large +20%</option>
+                                                            <?php foreach ($pizzasSizes as $size) : ?>
+                                                                <option value="<?php echo $size['size_id']; ?>"><?php echo $size['pizza_size']; ?> </option>
+                                                            <?php endforeach; ?>
                                                         </select>
                                                     </div>
                                                 </div>
