@@ -50,7 +50,7 @@
                                     <li class="d-flex justify-content-between my-2">
                                         <a href="#" class="product-link">
                                             <div class="d-flex gap-2">
-                                                <img src="src/assets/img/<?php echo $pizza['pizza_image']; ?>" class="rounded-circle" alt="Pizza <?php echo $pizza['pizza_name']; ?>">
+                                                <img src="src/assets/img/<?php echo $pizza['pizza_image']; ?>" class="rounded-circle" style="width: 50px" alt="Pizza <?php echo $pizza['pizza_name']; ?>">
                                                 <div class="my-auto">
                                                     <h6><?php echo $pizza['pizza_name']; ?> - <?php echo $pizza['pizza_size']; ?></h6>
                                                     <span class="qty d-flex gap-2">
@@ -97,14 +97,14 @@
                 </div>
             </div>
         </div>
-        <?php // if (isset($_SESSION['orderPlaced'])) : 
+        <?php // if (isset($_SESSION['orderPlaced'])) :
         ?>
         <a href="/pizzawinkel_app/delivery.php" class="btn btn-primary py-1 px-2 ms-3">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-scooter" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M9 2.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-.39l1.4 7a2.5 2.5 0 1 1-.98.195l-.189-.938-2.43 3.527A.5.5 0 0 1 9.5 13H4.95a2.5 2.5 0 1 1 0-1h4.287l2.831-4.11L11.09 3H9.5a.5.5 0 0 1-.5-.5M3.915 12a1.5 1.5 0 1 0 0 1H2.5a.5.5 0 0 1 0-1zm8.817-.789A1.499 1.499 0 0 0 13.5 14a1.5 1.5 0 0 0 .213-2.985l.277 1.387a.5.5 0 0 1-.98.196z" />
             </svg>
         </a>
-        <?php // endif 
+        <?php // endif
         ?>
     </div>
 </nav>

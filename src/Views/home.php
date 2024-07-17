@@ -137,5 +137,5 @@
 
 <!-- Footer Start -->
 <?php
-unset($_SESSION['alertLogin']);
+unset($_SESSION['alert']);
 include 'src/Views/partials/footer.php'; ?>
