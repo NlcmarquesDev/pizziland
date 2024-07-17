@@ -22,4 +22,9 @@ class PizzasDAO
     {
         return $this->db->query("SELECT * FROM pizzas LIMIT $value")->findAll();
     }
+
+    public function getNameById($id)
+    {
+        return $this->db->query("SELECT * FROM pizzas WHERE pizza_id = :id", [':id' => $id])->find();
+    }
 }

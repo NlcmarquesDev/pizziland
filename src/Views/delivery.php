@@ -75,8 +75,8 @@ include 'src/Views/partials/header.php'; ?>
                   <?php foreach ($orderItemsData as $item) : ?>
                     <tr>
                       <th scope="row"><?= $item['order_id'] ?></th>
-                      <td><?= $item['pizza_id'] ?></td>
-                      <td><?= $item['size_id'] ?></td>
+                      <td><?= $deliveryService->getNamePizza($item['pizza_id'])  ?></td>
+                      <td><?= $deliveryService->getSizePizza($item['size_id'])  ?></td>
                       <td><?= $item['quantity'] ?></td>
                       <td><?= $item['unit_price'] ?></td>
                     </tr>

@@ -17,4 +17,8 @@ class PizzasSizesDAO
     {
         return $this->db->query("SELECT * FROM `pizza_sizes`")->findAll();
     }
+    public function getNameById($sizeId)
+    {
+        return $this->db->query("SELECT * FROM `pizza_sizes` WHERE size_id = :id", [':id' => $sizeId])->find();
+    }
 }

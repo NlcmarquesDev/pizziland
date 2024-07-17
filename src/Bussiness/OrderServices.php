@@ -15,7 +15,7 @@ class OrderServices
     protected $dbDelivery;
     protected $dbPostcode;
     protected $dbOrderItems;
-    public $cart = [];
+
     public $user = 0; //0 is guest and 1 is user from database
 
     public function __construct()
@@ -48,12 +48,6 @@ class OrderServices
             $this->dbOrderItems->createOrder($orderItem, $lastOrderId);
         }
     }
-
-
-
-
-
-
 
     public function errors($session, $message)
     {

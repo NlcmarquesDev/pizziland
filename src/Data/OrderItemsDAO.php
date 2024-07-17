@@ -25,6 +25,7 @@ class OrderItemsDAO
 
     public function createOrder($data, $orderId)
     {
+
         $this->db->query("INSERT INTO order_items (order_id, pizza_id, quantity, unit_price,size_id) VALUES (:order_id, :pizza_id, :quantity, :unit_price,:size_id)", [
             ':order_id' => (int)$orderId,
             ':pizza_id' => (int)$data['pizza_id'],

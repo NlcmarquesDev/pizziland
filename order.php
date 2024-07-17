@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         'notes' => '',
     ];
 
-    $order->cart = $_SESSION['cart'];
+    $cart = $_SESSION['cart'];
 
     //check if the postcode is avaiable to delivery
     $postcodeDelivery = $order->isDeliveryAvailable($client['postcode_number']);
@@ -48,8 +48,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $lastInsertIdOrder = $order->createOrderAndGetId($orderData);
 
+
     //insert the orderItems data
-    $order->createOrderItems($order->cart, $lastInsertIdOrder['id']);
+    $order->createOrderItems($cart, $lastInsertIdOrder['id']);
 
 
     $_SESSION['orderPlaced'] = true;
